@@ -32,9 +32,15 @@ async def authenticator(request:Request,call_next):
     
 @app.middleware('http')
 async def logger(request:Request,call_next):
+    start_time=time.time()
     print('Request Incoming')
+    print("Request URL Path = ",request.url.path)
+    print("Request Method = ",request.method)
     response=await call_next(request)
     print('Response Incoming')
+    end_time=time.time()
+    total_time=(end_time-start_time)*1000
+    print("Time Taken by Request = ",round(total_time,2))
     return response
 
 @app.post('/login')
