@@ -15,6 +15,8 @@ class Logging(BaseModel):
     username:str
     password:str
 
+
+
 @app.middleware("http")
 async def authenticator(request:Request,call_next):
     if request.url.path in ['/','/login','logout']:
