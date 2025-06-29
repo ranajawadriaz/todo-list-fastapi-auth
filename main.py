@@ -41,6 +41,7 @@ async def logger(request:Request,call_next):
 def ToLogin(data:Logging):
     
     if data.username==USERNAME and data.password==PASSWORD:
+        global isLoggedIn
         isLoggedIn=True
         return {
             "message":"Login Success",
@@ -57,6 +58,7 @@ def ToLogin(data:Logging):
 
 @app.post('/logout')
 def logout():
+    global isLoggedIn
     isLoggedIn=False
     return {
         "message":"Logout Success"
